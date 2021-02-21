@@ -8,18 +8,20 @@ const port = 3001 || process.env.port;
 
 
 let thefile = fs.readFileSync("mystocks1.json");
-let thestringfile = thefile;
-console.log(`this is what is being sent ${thestringfile}`);
+let thestringfile = JSON.stringify(thefile);
+console.log(`this is what is being sent ${thefile}`);
 app.use(cors());
-
+app.use(express.json());
+//json converts object to json and sets headers type to json
 var jsonParser = bodyParser.json();
 app.get("/stocks", (req, res) => {
-  res.json(JSON.parse(thestringfile));
+  res.send(thefile);
 });
 
-app.post("/stock", jsonParser, (req, res) => {
+app.post("/stock", (req, res) => {
+  console.log("i got a request");
   console.log(`i am in the server recieving data ${JSON.stringify(req.body)}`);
-  fs.writeFile("mystocks1.json", JSON.stringify(req.body), (err) => {
+  fs.writeFile("mystocks1.json",JSON.stringify(req.body), (err) => {
     if (err) console.log(err);
     else {
       console.log("File written successfully\n");
