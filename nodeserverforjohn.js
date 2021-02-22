@@ -17,7 +17,7 @@ var jsonParser = bodyParser.json();
 app.get("/stocks", (req, res) => {
   res.send(thefile);
 });
-
+//holy cow what do i need to do
 app.post("/stock", (req, res) => {
   console.log("i got a request");
   console.log(`i am in the server recieving data ${JSON.stringify(req.body)}`);
