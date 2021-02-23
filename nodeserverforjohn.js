@@ -36,7 +36,7 @@ app.post("/stock", (req, res) => {
       console.log("The written file has the following contents:");
       console.log(fs.readFileSync("mystocks1.json", "utf8"));
     }
-    return res;
+    return res.send(`i got your updated post ${JSON.stringify(req.body)}`);
   });
 
 });
