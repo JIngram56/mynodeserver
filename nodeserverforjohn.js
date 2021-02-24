@@ -4,7 +4,7 @@ const fs = require("fs");
 var cors = require("cors");
 
 const app = express();
-const port = process.env.port || 3001;
+const port = process.env.PORT || 3001;
 
 //app.use(bodyParser);
 let thefile = fs.readFileSync("mystocks1.json");
