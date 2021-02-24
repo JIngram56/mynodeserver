@@ -4,14 +4,20 @@ const fs = require("fs");
 var cors = require("cors");
 
 const app = express();
-const port = 3001 || process.env.port;
+const port = process.env.port || 3001;
 
 //app.use(bodyParser);
 let thefile = fs.readFileSync("mystocks1.json");
 let thestringfile = JSON.parse(thefile);
 console.log(`this is what is being sent ${thefile}`);
-app.use(cors());
-//app.use((req,res,next)=>{res.header('Access-Control-Allow-Origin'),'*'});
+//app.use(cors());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+//app.use((req,res,next)=>{res.header('Access-Control-Allow-Origin','*')});
 //This is like a body parser for the new version of express
 //Need this for the post request to get the contents of the body
 app.use(express.json());
