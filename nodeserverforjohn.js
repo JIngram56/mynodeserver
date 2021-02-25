@@ -10,14 +10,13 @@ const port = process.env.PORT || 3001;
 let thefile = fs.readFileSync("mystocks1.json");
 let thestringfile = JSON.parse(thefile);
 console.log(`this is what is being sent ${thefile}`);
-//app.use(cors());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors());
+//app.use((req, res, next) => {
+//  res.header("Access-Control-Allow-Origin", "*");
+ // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//  next();
+//});
 
-//app.use((req,res,next)=>{res.header('Access-Control-Allow-Origin','*')});
 //This is like a body parser for the new version of express
 //Need this for the post request to get the contents of the body
 app.use(express.json());
@@ -42,7 +41,7 @@ app.post("/stock", (req, res) => {
       console.log("The written file has the following contents:");
       console.log(fs.readFileSync("mystocks1.json", "utf8"));
     }
-   // return res.send(`i got your updated post ${JSON.stringify(req.body)}`);
+    return res;
   });
 
 });
